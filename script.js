@@ -12,7 +12,7 @@ function encriptar(text_user) {
       listas.push(letra);
     }
   }
-  return listas.join("");
+  return listas.oin("");
 }
 
 function desencriptar(text_user) {
@@ -39,7 +39,7 @@ document.getElementById("desencriptar").addEventListener("click", function () {
 });
 
 function is_mayuscula(letra) {
-  return /[áéíóúŕẃýíṕṕśǵj́ḱĺñźćńḿA-ZÁÉÍÓÚÁÍÓÚŔẂÝÍṔṔŚǴJ́ḰĹÑŹĆŃḾ]/.test(letra);
+  return /[áéíóúŕẃýíṕśǵ́ḱĺźćńḿA-ZÁÉÍÓÚŔẂÝÍṔŚǴ́ḰĹÑŹĆŃḾ]/.test(letra);
 }
 
 text.addEventListener("input", function () {
