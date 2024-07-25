@@ -63,37 +63,38 @@ function es_tilde_minuscula(letra) {
 }
 
 text.addEventListener("input", function () {
-  console.log(text.value);
-  const letra = text.value.charAt(text.value.length - 1);
-
   if (text.value.length === 0) {
     textarea_contaner.style.borderColor = "#e4f1ff";
     no_mayusculas.classList.remove("invalido");
     no_tildes.classList.remove("invalido");
     iconos.classList.add("hidden");
-
     return;
   }
   iconos.classList.remove("hidden");
-  if (es_mayuscula(letra) && es_tilde(letra)) {
-    textarea_contaner.style.borderColor = "red";
-    text.setAttribute("maxlength", text.value.length);
-    no_mayusculas.classList.add("invalido");
-    no_tildes.classList.add("invalido");
-  } else if (es_mayuscula(letra)) {
-    textarea_contaner.style.borderColor = "red";
-    text.setAttribute("maxlength", text.value.length);
-    no_mayusculas.classList.add("invalido");
-  } else if (es_tilde(letra)) {
-    textarea_contaner.style.borderColor = "red";
-    text.setAttribute("maxlength", text.value.length);
-    no_tildes.classList.add("invalido");
-  } else {
-    text.removeAttribute("maxlength");
-    textarea_contaner.style.borderColor = "green";
-    no_mayusculas.classList.remove("invalido");
-    no_tildes.classList.remove("invalido");
+
+  for (letra of text.value) {
+    if (es_mayuscula(letra) && es_tilde(letra)) {
+      textarea_contaner.style.borderColor = "red";
+      text.setAttribute("maxlength", text.value.length);
+      no_mayusculas.classList.add("invalido");
+      no_tildes.classList.add("invalido");
+      return;
+    } else if (es_mayuscula(letra)) {
+      textarea_contaner.style.borderColor = "red";
+      text.setAttribute("maxlength", text.value.length);
+      no_mayusculas.classList.add("invalido");
+      return;
+    } else if (es_tilde(letra)) {
+      textarea_contaner.style.borderColor = "red";
+      text.setAttribute("maxlength", text.value.length);
+      no_tildes.classList.add("invalido");
+      return;
+    }
   }
+  text.removeAttribute("maxlength");
+  textarea_contaner.style.borderColor = "green";
+  no_mayusculas.classList.remove("invalido");
+  no_tildes.classList.remove("invalido");
 });
 
 document.getElementById("copy").addEventListener("click", function () {
