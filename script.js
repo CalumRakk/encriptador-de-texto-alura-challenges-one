@@ -4,6 +4,7 @@ const textarea_contaner = document.querySelector(".contenedor_textarea");
 const dialogo = document.getElementById("dialog");
 const no_mayusculas = document.getElementById("no-mayusculas");
 const no_tildes = document.getElementById("no-tildes");
+const iconos = document.querySelector(".icons");
 
 function encriptar(text_user) {
   if (text.hasAttribute("maxlength")) {
@@ -69,8 +70,11 @@ text.addEventListener("input", function () {
     textarea_contaner.style.borderColor = "#e4f1ff";
     no_mayusculas.classList.remove("invalido");
     no_tildes.classList.remove("invalido");
+    iconos.classList.add("hidden");
+
     return;
   }
+  iconos.classList.remove("hidden");
   if (es_mayuscula(letra) && es_tilde(letra)) {
     textarea_contaner.style.borderColor = "red";
     text.setAttribute("maxlength", text.value.length);
@@ -107,6 +111,7 @@ document.getElementById("clear").addEventListener("click", function () {
   text.removeAttribute("maxlength");
   textarea_contaner.style.borderColor = "#e4f1ff";
   dialogo.textContent = "¡Texto borrado!";
+  iconos.classList.add("hidden");
   no_mayusculas.classList.remove("invalido");
   no_tildes.classList.remove("invalido");
   dialogo.showModal();
